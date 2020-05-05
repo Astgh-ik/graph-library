@@ -237,20 +237,21 @@ class Graph{
 	}
 	public function min_weighted_vertex_cover(){
 		$arr = [];
-		foreach ($this->edges as $key) {
+		foreach ($this->edges as $key) {//վերցնում ենք բոլոր եզրերը 
 			if (!(in_array($key[1], $arr))) {
-				$n = $this->neighbors($key[1]);
+			//եթե այդ եզրի հանգույցը չկա մեր զանգվածի մեջ
+				$n = $this->neighbors($key[1]);//ստուգում ենք, որ նրա հարևան հանգույցները նույնպես չլինեն մեր զանգվածում
 				$c = 0;
 				for($i = 0;$i < count($n);$i++){
 					if (in_array($n[$i], $arr)) {
 						$c++;
 					}
 				}
-				if ($c == 0) {
+				if ($c == 0) {//եթե հարևան հանգույցները չկան մեր զանգվածում, ապա այդ գագաթը աելացնում ենք զանգվածին
 					array_push($arr, $key[1]);
 				}
-				else{
-					if (!(in_array($key[1],$arr)||in_array($key[0],$arr))) {
+				else{//
+					if (!(in_array($key[1],$arr)||in_array($key[0],$arr))) {//եթե կան եզրեր որոնց ոչ մի հանգույց չկա զանգվածում ավելացնում ենք
 						if($c < count($n)){
 							array_push($arr,$key[1]);
 						}
@@ -266,8 +267,9 @@ class Graph{
 	public function independent_set(){
 		$arr = [];
 		foreach ($this->edges as $key) {
-			if (!(in_array($key[1], $arr))) {
+			if (!(in_array($key[1], $arr))) {//դիտարկում ենք հանգույցները
 				$n = $this->neighbors($key[1]);
+				//եթե հարևան հանգույցները չկան զանգվածում,այդ հանգույցը ավելացնում ենք
 				$c = 0;
 				for($i = 0;$i < count($n);$i++){
 					if (in_array($n[$i], $arr)) {
