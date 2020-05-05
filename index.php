@@ -284,11 +284,4 @@ class Graph{
 		return $arr;
 	}
 }
-$G = new Graph();
-$G->add_nodes([1,2,3,4,5,6]);
-$G->add_edges([[1,2],[2,3],[1,3],[3,4],[1,4],[2,4],[1,5],[5,6]]);
-// $g = $G->number_of_edges();
-$g=$G->min_mximal_matching();
-// $G->min_weighted_vertex_cover();
-print_r($g);
 ?>
